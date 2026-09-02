@@ -13,6 +13,9 @@ from src.routing import (
     is_route_feasible,
     find_best_cvrp_bruteforce
 )
+from src.validation import validate_solution
+from src.reporting import print_solution_report
+
 
 print(depot)
 print(customers)
@@ -79,3 +82,24 @@ best_routes, best_cvrp_distance = find_best_cvrp_bruteforce(
 print("Best CVRP routes:", best_routes)
 print("Best CVRP total distance:", best_cvrp_distance)
 
+is_valid, validation_message = validate_solution(
+    best_routes,
+    len(customers),
+    demands,
+    vehicle_capacity,
+    num_vehicles
+)
+
+print("Solution valid?", is_valid)
+print("Validation message:", validation_message)
+
+
+print()
+print("=== CVRP SOLUTION REPORT ===")
+
+print_solution_report(
+    best_routes,
+    distance_matrix,
+    demands,
+    vehicle_capacity
+)
