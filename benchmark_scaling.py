@@ -249,5 +249,5 @@ plt.savefig(
     bbox_inches="tight"
 )
 
-plt.show()
+plt.close()
 

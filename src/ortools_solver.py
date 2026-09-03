@@ -5,7 +5,8 @@ def solve_cvrp_ortools(
     distance_matrix,
     demands,
     num_vehicles,
-    vehicle_capacity
+    vehicle_capacity,
+    time_limit_seconds=1
 ):
     num_nodes = len(distance_matrix)
 
@@ -65,7 +66,9 @@ def solve_cvrp_ortools(
         routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
     )
 
-    search_parameters.time_limit.FromSeconds(1)
+    search_parameters.time_limit.FromSeconds(
+    time_limit_seconds
+   )
 
     solution = routing.SolveWithParameters(search_parameters)
 
