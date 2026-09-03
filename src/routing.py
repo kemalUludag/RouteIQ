@@ -49,7 +49,7 @@ def find_best_cvrp_bruteforce(
     best_routes = None
     best_total_distance = float("inf")
 
-    for split_size in range(1, num_customers):
+    for split_size in range(0, num_customers + 1):
         for vehicle1_group in itertools.combinations(
             customer_nodes,
             split_size
