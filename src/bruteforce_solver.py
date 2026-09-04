@@ -8,13 +8,29 @@ from src.validation import validate_cvrp_routes
 
 
 class BruteForceCVRPSolver:
+    def __init__(
+        self,
+        max_customers=9
+    ):
+        self.max_customers = max_customers
+
+    def supports(
+        self,
+        instance: CVRPInstance
+    ) -> bool:
+        return (
+            instance.num_vehicles == 2
+            and instance.num_customers
+            <= self.max_customers
+        )
+
     def solve(
         self,
         instance: CVRPInstance
     ) -> Solution:
         start_time = time.perf_counter()
 
-        if instance.num_vehicles != 2:
+        if not self.supports(instance):
             runtime_seconds = (
                 time.perf_counter()
                 - start_time
@@ -188,12 +204,13 @@ class BruteForceCVRPSolver:
             feasible=is_valid,
             status=status,
             metadata={
-                "exact": True,
-                "candidate_solutions_evaluated":
-                    candidate_solutions_evaluated,
-                "validation_message":
-                    validation_message
-            }
+    "exact": True,
+    "max_customers":
+        self.max_customers,
+    "reason":
+        "Instance is outside the supported "
+        "range of the brute-force solver."
+}
         )
 
 

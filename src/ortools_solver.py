@@ -159,6 +159,11 @@ class ORToolsCVRPSolver:
         self.time_limit_seconds = (
             time_limit_seconds
         )
+    def supports(
+    self,
+    instance: CVRPInstance
+) -> bool:
+     return True
 
     def solve(
         self,

@@ -86,4 +86,31 @@ def test_infeasible_solution_has_no_gap():
 
     assert gap is None
 
+
+def test_tiny_floating_point_gap_is_zero():
+    reference = Solution(
+        solver_name="Exact Solver",
+        routes=[],
+        total_distance=100.0,
+        runtime_seconds=1.0,
+        feasible=True,
+        status="OPTIMAL"
+    )
+
+    solution = Solution(
+        solver_name="Test Solver",
+        routes=[],
+        total_distance=100.00000000000001,
+        runtime_seconds=0.5,
+        feasible=True,
+        status="FEASIBLE"
+    )
+
+    gap = calculate_optimality_gap(
+        solution,
+        reference
+    )
+
+    assert gap == 0.0
+
     

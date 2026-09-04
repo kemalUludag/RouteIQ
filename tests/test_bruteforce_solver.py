@@ -81,4 +81,46 @@ def test_ortools_matches_exact_solution_on_small_instance():
         )
     )
 
-    
+def test_bruteforce_rejects_large_instance():
+    points = [
+        (float(i), 0.0)
+        for i in range(11)
+    ]
+
+    demands = [
+        0
+    ] + [
+        1
+        for _ in range(10)
+    ]
+
+    instance = CVRPInstance(
+        name="large_instance",
+        points=points,
+        demands=demands,
+        num_vehicles=2,
+        vehicle_capacities=[
+            10,
+            10
+        ]
+    )
+
+    solver = BruteForceCVRPSolver(
+        max_customers=9
+    )
+
+    assert solver.supports(
+        instance
+    ) is False
+
+    solution = solver.solve(
+        instance
+    )
+
+    assert solution.feasible is False
+    assert (
+        solution.status
+        == "UNSUPPORTED_INSTANCE"
+    )
+
+       

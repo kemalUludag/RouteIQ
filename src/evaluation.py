@@ -28,7 +28,8 @@ def calculate_optimality_gap(
         )
         / reference_solution.total_distance
     ) * 100
-
+    if abs(gap) < 1e-9:
+        return 0.0
     return gap
 
 
