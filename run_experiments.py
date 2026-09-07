@@ -12,7 +12,9 @@ from src.ortools_solver import (
 from src.experiment_runner import (
     ExperimentRunner
 )
-
+from src.clarke_wright_solver import (
+    ClarkeWrightCVRPSolver
+)
 
 customer_sizes = [
     5,
@@ -52,6 +54,8 @@ solvers = [
     BruteForceCVRPSolver(
         max_customers=9
     ),
+
+    ClarkeWrightCVRPSolver(),
 
     ORToolsCVRPSolver(
         time_limit_seconds=1

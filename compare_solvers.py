@@ -4,12 +4,17 @@ from src.problem_data import create_default_instance
 from src.bruteforce_solver import BruteForceCVRPSolver
 from src.ortools_solver import ORToolsCVRPSolver
 from src.evaluation import compare_solvers
-
+from src.clarke_wright_solver import (
+    ClarkeWrightCVRPSolver
+)
 
 instance = create_default_instance()
 
 solvers = [
     BruteForceCVRPSolver(),
+
+    ClarkeWrightCVRPSolver(),
+
     ORToolsCVRPSolver(
         time_limit_seconds=1
     )
@@ -60,4 +65,3 @@ for solution in solutions:
 
     print()
 
-    

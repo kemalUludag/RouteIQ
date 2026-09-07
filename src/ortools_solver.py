@@ -154,16 +154,23 @@ def solve_cvrp_ortools(
 class ORToolsCVRPSolver:
     def __init__(
         self,
-        time_limit_seconds=1
+        time_limit_seconds=1,
+        solver_name=None
     ):
         self.time_limit_seconds = (
             time_limit_seconds
         )
+
+        if solver_name is None:
+            self.solver_name = "OR-Tools"
+        else:
+            self.solver_name = solver_name
+
     def supports(
-    self,
-    instance: CVRPInstance
-) -> bool:
-     return True
+        self,
+        instance: CVRPInstance
+    ) -> bool:
+        return True
 
     def solve(
         self,
@@ -195,7 +202,7 @@ class ORToolsCVRPSolver:
 
         if routes is None:
             return Solution(
-                solver_name="OR-Tools",
+                solver_name=self.solver_name,
                 routes=[],
                 total_distance=float("inf"),
                 runtime_seconds=runtime_seconds,
@@ -229,7 +236,7 @@ class ORToolsCVRPSolver:
         )
 
         return Solution(
-            solver_name="OR-Tools",
+            solver_name=self.solver_name,
             routes=routes,
             total_distance=total_distance,
             runtime_seconds=runtime_seconds,
@@ -242,5 +249,6 @@ class ORToolsCVRPSolver:
                     validation_message
             }
         )
+
 
     
