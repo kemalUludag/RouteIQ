@@ -1,5 +1,8 @@
 import pandas as pd
 
+from src.gurobi_solver import (
+    GurobiCVRPSolver
+)
 from src.problem_data import create_default_instance
 from src.bruteforce_solver import BruteForceCVRPSolver
 from src.ortools_solver import ORToolsCVRPSolver
@@ -14,6 +17,12 @@ solvers = [
     BruteForceCVRPSolver(),
 
     ClarkeWrightCVRPSolver(),
+
+    GurobiCVRPSolver(
+        time_limit_seconds=10,
+        output_flag=0,
+        max_customers=9
+    ),
 
     ORToolsCVRPSolver(
         time_limit_seconds=1
