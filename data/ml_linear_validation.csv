@@ -1,0 +1,2 @@
+model,dataset_split,mae,rmse,r2,mae_improvement_vs_dummy_percent,train_samples,evaluation_samples
+LinearRegression,validation,6.109698898342524,8.191203397635702,0.8899638852048399,69.63874946892614,6000,2000

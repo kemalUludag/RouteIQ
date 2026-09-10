@@ -1,0 +1,2 @@
+model,train_samples,test_samples,test_mae,test_rmse,test_r2
+GradientBoostingTuned,8000,2000,2.066460170999961,2.623361544263431,0.9896336887125112

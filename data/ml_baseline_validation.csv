@@ -1,0 +1,2 @@
+model,dataset_split,mae,rmse,r2,train_samples,evaluation_samples
+DummyMean,validation,20.123344037128582,24.69340396169947,-4.028886807283527e-06,6000,2000
