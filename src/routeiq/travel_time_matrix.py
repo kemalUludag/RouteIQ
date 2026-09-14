@@ -3,15 +3,15 @@ import random
 
 import pandas as pd
 
-from src.distance import (
+from .distance import (
     create_distance_matrix
 )
 
-from src.models import (
+from .models import (
     CVRPInstance
 )
 
-from src.trip_data_generator import (
+from .trip_data_generator import (
     ROAD_SPEEDS,
     DEFAULT_NOISE_STD,
     calculate_expected_travel_time,

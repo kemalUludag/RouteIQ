@@ -1,12 +1,12 @@
 import pandas as pd
 import pytest
 
-from src.result_analysis import (
+from routeiq.result_analysis import (
     cluster_bootstrap_mean_confidence_interval
 )
 
 
-from src.result_analysis import (
+from routeiq.result_analysis import (
     compare_solver_to_baseline,
     bootstrap_mean_confidence_interval
 )

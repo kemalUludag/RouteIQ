@@ -1,6 +1,6 @@
 import numpy as np
 
-from src.routing import (
+from .routing import (
     calculate_routes_cost
 )
 

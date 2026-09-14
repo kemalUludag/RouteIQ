@@ -1,13 +1,13 @@
 import pandas as pd
 
-from src.gurobi_solver import (
+from routeiq.gurobi_solver import (
     GurobiCVRPSolver
 )
-from src.problem_data import create_default_instance
-from src.bruteforce_solver import BruteForceCVRPSolver
-from src.ortools_solver import ORToolsCVRPSolver
-from src.evaluation import compare_solvers
-from src.clarke_wright_solver import (
+from routeiq.problem_data import create_default_instance
+from routeiq.bruteforce_solver import BruteForceCVRPSolver
+from routeiq.ortools_solver import ORToolsCVRPSolver
+from routeiq.evaluation import compare_solvers
+from routeiq.clarke_wright_solver import (
     ClarkeWrightCVRPSolver
 )
 

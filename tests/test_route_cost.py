@@ -1,6 +1,6 @@
 import pytest
 
-from src.routing import (
+from routeiq.routing import (
     calculate_route_cost,
     calculate_routes_cost
 )

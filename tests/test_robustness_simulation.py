@@ -1,10 +1,10 @@
 import pytest
 
-from src.models import (
+from routeiq.models import (
     CVRPInstance
 )
 
-from src.robustness_simulation import (
+from routeiq.robustness_simulation import (
     StressTestConfig,
     MODERATE_STRESS,
     calculate_edge_noise_std,
@@ -12,7 +12,7 @@ from src.robustness_simulation import (
     build_stress_realization
 )
 
-from src.travel_time_matrix import (
+from routeiq.travel_time_matrix import (
     generate_routing_context,
     build_true_expected_travel_time_matrix
 )

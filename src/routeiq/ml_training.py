@@ -1,11 +1,11 @@
 import pandas as pd
 
-from src.ml_data import (
+from .ml_data import (
     load_trip_data,
     split_trip_data
 )
 
-from src.ml_models import (
+from .ml_models import (
     build_final_gradient_boosting_pipeline
 )
 

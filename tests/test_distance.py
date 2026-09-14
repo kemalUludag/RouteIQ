@@ -1,4 +1,4 @@
-from src.distance import calculate_distance
+from routeiq.distance import calculate_distance
 
 
 def test_distance_3_4_5():

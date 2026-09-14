@@ -1,6 +1,6 @@
-from src.validation import validate_solution
-from src.models import CVRPInstance
-from src.validation import validate_cvrp_routes
+from routeiq.validation import validate_solution
+from routeiq.models import CVRPInstance
+from routeiq.validation import validate_cvrp_routes
 
 demands = [0, 2, 4, 3, 5, 2]
 vehicle_capacity = 10

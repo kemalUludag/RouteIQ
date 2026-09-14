@@ -1,11 +1,11 @@
 import pytest
 
-from src.models import CVRPInstance
-from src.problem_data import create_default_instance
-from src.ortools_solver import ORToolsCVRPSolver
-from src.validation import validate_solution
-from src.models import CVRPInstance
-from src.routing import calculate_route_demand
+from routeiq.models import CVRPInstance
+from routeiq.problem_data import create_default_instance
+from routeiq.ortools_solver import ORToolsCVRPSolver
+from routeiq.validation import validate_solution
+from routeiq.models import CVRPInstance
+from routeiq.routing import calculate_route_demand
 
 
 def test_ortools_solver_returns_solution():
@@ -103,7 +103,7 @@ def test_solver_wrapper_rejects_invalid_internal_solution(
         return invalid_routes
 
     monkeypatch.setattr(
-        "src.ortools_solver._solve_cvrp_routes",
+        "routeiq.ortools_solver._solve_cvrp_routes",
         fake_solver
     )
 

@@ -1,5 +1,5 @@
 import random
-from src.models import CVRPInstance
+from .models import CVRPInstance
 
 def generate_cvrp_instance(
     num_customers,

@@ -1,6 +1,6 @@
 import pytest
 
-from src.predict_optimize_evaluation import (
+from routeiq.predict_optimize_evaluation import (
     calculate_matrix_mae,
     evaluate_routes_on_matrix,
     calculate_improvement_percent,

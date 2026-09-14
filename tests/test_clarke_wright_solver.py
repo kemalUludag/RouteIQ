@@ -1,9 +1,9 @@
-from src.models import CVRPInstance
-from src.problem_data import create_default_instance
-from src.clarke_wright_solver import (
+from routeiq.models import CVRPInstance
+from routeiq.problem_data import create_default_instance
+from routeiq.clarke_wright_solver import (
     ClarkeWrightCVRPSolver
 )
-from src.validation import validate_cvrp_routes
+from routeiq.validation import validate_cvrp_routes
 
 
 def test_clarke_wright_returns_feasible_solution():

@@ -1,10 +1,10 @@
 import itertools
 import time
 
-from src.models import CVRPInstance, Solution
-from src.distance import create_distance_matrix
-from src.routing import calculate_route_distance
-from src.validation import validate_cvrp_routes
+from .models import CVRPInstance, Solution
+from .distance import create_distance_matrix
+from .routing import calculate_route_distance
+from .validation import validate_cvrp_routes
 
 
 class BruteForceCVRPSolver:

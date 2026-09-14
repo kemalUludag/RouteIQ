@@ -1,4 +1,4 @@
-from src.models import CVRPInstance
+from .models import CVRPInstance
 
 depot = (0, 0)
 

@@ -1,4 +1,4 @@
-from src.problem_data import (
+from routeiq.problem_data import (
     depot,
     customers,
     demands,
@@ -6,16 +6,16 @@ from src.problem_data import (
     vehicle_capacity
 )
 
-from src.distance import create_distance_matrix
+from routeiq.distance import create_distance_matrix
 import time
-from src.routing import (
+from routeiq.routing import (
     find_best_cvrp_bruteforce,
     calculate_route_distance
 )
 
-from src.validation import validate_solution
-from src.reporting import print_solution_report
-from src.ortools_solver import solve_cvrp_ortools
+from routeiq.validation import validate_solution
+from routeiq.reporting import print_solution_report
+from routeiq.ortools_solver import solve_cvrp_ortools
 
 
 points = [depot] + customers

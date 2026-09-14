@@ -16,3 +16,4 @@ data/predict_optimize_results.csv
 data/predict_optimize_environment_summary.csv
 data/predict_optimize_network_summary.csv
 data/predict_optimize_nonzero_regret.csv
+*.egg-info/

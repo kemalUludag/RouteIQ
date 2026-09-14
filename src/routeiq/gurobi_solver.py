@@ -3,20 +3,20 @@ import time
 import gurobipy as gp
 from gurobipy import GRB
 
-from src.models import (
+from .models import (
     CVRPInstance,
     Solution
 )
 
-from src.distance import (
+from .distance import (
     create_distance_matrix
 )
 
-from src.routing import (
+from .routing import (
     calculate_routes_cost
 )
 
-from src.validation import (
+from .validation import (
     validate_cvrp_routes
 )
 

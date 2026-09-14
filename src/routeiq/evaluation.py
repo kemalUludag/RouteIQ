@@ -1,4 +1,4 @@
-from src.models import CVRPInstance, Solution
+from .models import CVRPInstance, Solution
 
 
 def calculate_optimality_gap(

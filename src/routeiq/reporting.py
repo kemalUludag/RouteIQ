@@ -1,4 +1,4 @@
-from src.routing import calculate_route_distance, calculate_route_demand
+from .routing import calculate_route_distance, calculate_route_demand
 
 
 def print_solution_report(

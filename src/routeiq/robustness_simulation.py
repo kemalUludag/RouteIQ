@@ -1,19 +1,19 @@
 from dataclasses import dataclass
 import random
 
-from src.distance import (
+from .distance import (
     create_distance_matrix
 )
 
-from src.models import (
+from .models import (
     CVRPInstance
 )
 
-from src.travel_time_matrix import (
+from .travel_time_matrix import (
     RoutingContextScenario
 )
 
-from src.trip_data_generator import (
+from .trip_data_generator import (
     calculate_expected_travel_time
 )
 

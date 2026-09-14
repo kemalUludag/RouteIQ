@@ -1,11 +1,11 @@
-from src.models import CVRPInstance
-from src.bruteforce_solver import (
+from routeiq.models import CVRPInstance
+from routeiq.bruteforce_solver import (
     BruteForceCVRPSolver
 )
-from src.ortools_solver import (
+from routeiq.ortools_solver import (
     ORToolsCVRPSolver
 )
-from src.experiment_runner import (
+from routeiq.experiment_runner import (
     ExperimentRunner
 )
 

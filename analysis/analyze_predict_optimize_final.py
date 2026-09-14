@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.result_analysis import (
+from routeiq.result_analysis import (
     cluster_bootstrap_mean_confidence_interval
 )
 

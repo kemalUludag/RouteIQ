@@ -2,16 +2,16 @@ import pandas as pd
 
 from sklearn.dummy import DummyRegressor
 
-from src.ml_data import (
+from routeiq.ml_data import (
     load_trip_data,
     split_trip_data
 )
 
-from src.ml_evaluation import (
+from routeiq.ml_evaluation import (
     evaluate_regression
 )
 
-from src.ml_models import (
+from routeiq.ml_models import (
     build_engineered_linear_pipeline,
     build_random_forest_pipeline,
     build_engineered_gradient_boosting_pipeline

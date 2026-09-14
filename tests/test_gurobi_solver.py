@@ -1,17 +1,17 @@
 import pytest
 
-from src.problem_data import (
+from routeiq.problem_data import (
     create_default_instance
 )
-from src.bruteforce_solver import (
+from routeiq.bruteforce_solver import (
     BruteForceCVRPSolver
 )
-from src.gurobi_solver import (
+from routeiq.gurobi_solver import (
     GurobiCVRPSolver
 )
 
-from src.models import CVRPInstance
-from src.routing import calculate_route_demand
+from routeiq.models import CVRPInstance
+from routeiq.routing import calculate_route_demand
 
 
 def test_gurobi_returns_feasible_solution():

@@ -1,9 +1,9 @@
 import pandas as pd
 
-from src.data_generator import (
+from routeiq.data_generator import (
     generate_cvrp_instance_model
 )
-from src.gurobi_solver import (
+from routeiq.gurobi_solver import (
     GurobiCVRPSolver
 )
 

@@ -1,4 +1,4 @@
-from src.trip_data_generator import generate_trip_dataset
+from routeiq.trip_data_generator import generate_trip_dataset
 
 
 trips_df = generate_trip_dataset(

@@ -1,9 +1,9 @@
 import pytest
 
-from src.models import CVRPInstance
-from src.problem_data import create_default_instance
-from src.bruteforce_solver import BruteForceCVRPSolver
-from src.ortools_solver import ORToolsCVRPSolver
+from routeiq.models import CVRPInstance
+from routeiq.problem_data import create_default_instance
+from routeiq.bruteforce_solver import BruteForceCVRPSolver
+from routeiq.ortools_solver import ORToolsCVRPSolver
 
 
 def test_bruteforce_solver_returns_optimal_solution():

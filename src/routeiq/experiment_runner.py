@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.evaluation import calculate_optimality_gap
+from .evaluation import calculate_optimality_gap
 
 
 class ExperimentRunner:

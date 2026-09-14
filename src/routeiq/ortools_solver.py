@@ -3,10 +3,10 @@ import time
 from ortools.constraint_solver import pywrapcp
 from ortools.constraint_solver import routing_enums_pb2
 
-from src.validation import validate_cvrp_routes
-from src.models import CVRPInstance, Solution
-from src.distance import create_distance_matrix
-from src.routing import (
+from .validation import validate_cvrp_routes
+from .models import CVRPInstance, Solution
+from .distance import create_distance_matrix
+from .routing import (
     calculate_route_distance,
     calculate_routes_cost
 )

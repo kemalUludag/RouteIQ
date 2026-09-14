@@ -1,7 +1,7 @@
 import pytest
 
-from src.models import CVRPInstance
-from src.problem_data import create_default_instance
+from routeiq.models import CVRPInstance
+from routeiq.problem_data import create_default_instance
 
 def test_valid_cvrp_instance():
     instance = CVRPInstance(

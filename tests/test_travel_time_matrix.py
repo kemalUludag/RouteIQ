@@ -1,15 +1,15 @@
 import numpy as np
 import pytest
 
-from src.travel_time_matrix import (
+from routeiq.travel_time_matrix import (
     build_free_flow_travel_time_matrix
 )
 
-from src.models import (
+from routeiq.models import (
     CVRPInstance
 )
 
-from src.travel_time_matrix import (
+from routeiq.travel_time_matrix import (
     RoutingContextScenario,
     generate_routing_context,
     build_edge_feature_frame,

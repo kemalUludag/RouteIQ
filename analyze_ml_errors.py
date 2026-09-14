@@ -1,11 +1,11 @@
 import pandas as pd
 
-from src.ml_data import (
+from routeiq.ml_data import (
     load_trip_data,
     split_trip_data
 )
 
-from src.ml_models import (
+from routeiq.ml_models import (
     build_random_forest_pipeline,
     build_gradient_boosting_pipeline
 )

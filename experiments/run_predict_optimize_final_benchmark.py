@@ -2,34 +2,34 @@ import json
 
 import pandas as pd
 
-from src.data_generator import (
+from routeiq.data_generator import (
     generate_cvrp_instance_model
 )
 
-from src.distance import (
+from routeiq.distance import (
     create_distance_matrix
 )
 
-from src.gurobi_solver import (
+from routeiq.gurobi_solver import (
     GurobiCVRPSolver
 )
 
-from src.ml_training import (
+from routeiq.ml_training import (
     train_final_travel_time_model
 )
 
-from src.ortools_solver import (
+from routeiq.ortools_solver import (
     ORToolsCVRPSolver
 )
 
-from src.predict_optimize_evaluation import (
+from routeiq.predict_optimize_evaluation import (
     calculate_matrix_mae,
     evaluate_routes_on_matrix,
     calculate_improvement_percent,
     calculate_regret_percent
 )
 
-from src.travel_time_matrix import (
+from routeiq.travel_time_matrix import (
     generate_routing_context,
     build_free_flow_travel_time_matrix,
     build_predicted_travel_time_matrix,

@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from src.trip_data_generator import (
+from routeiq.trip_data_generator import (
     calculate_expected_travel_time,
     calculate_realized_travel_time,
     generate_trip_dataset

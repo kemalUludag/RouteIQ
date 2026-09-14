@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.ml_data import (
+from routeiq.ml_data import (
     TARGET_COLUMN,
     split_trip_data
 )

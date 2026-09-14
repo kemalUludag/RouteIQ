@@ -1,27 +1,27 @@
 import numpy as np
 import pandas as pd
 
-from src.data_generator import (
+from routeiq.data_generator import (
     generate_cvrp_instance_model
 )
 
-from src.distance import (
+from routeiq.distance import (
     create_distance_matrix
 )
 
-from src.ml_training import (
+from routeiq.ml_training import (
     train_final_travel_time_model
 )
 
-from src.ortools_solver import (
+from routeiq.ortools_solver import (
     ORToolsCVRPSolver
 )
 
-from src.routing import (
+from routeiq.routing import (
     calculate_routes_cost
 )
 
-from src.travel_time_matrix import (
+from routeiq.travel_time_matrix import (
     generate_routing_context,
     build_predicted_travel_time_matrix,
     build_true_expected_travel_time_matrix

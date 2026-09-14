@@ -1,15 +1,15 @@
 import pandas as pd
 
-from src.data_generator import (
+from routeiq.data_generator import (
     generate_cvrp_instance_model
 )
-from src.clarke_wright_solver import (
+from routeiq.clarke_wright_solver import (
     ClarkeWrightCVRPSolver
 )
-from src.ortools_solver import (
+from routeiq.ortools_solver import (
     ORToolsCVRPSolver
 )
-from src.experiment_runner import (
+from routeiq.experiment_runner import (
     ExperimentRunner
 )
 

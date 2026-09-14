@@ -3,16 +3,16 @@ import json
 import numpy as np
 import pandas as pd
 
-from src.data_generator import (
+from routeiq.data_generator import (
     generate_cvrp_instance_model
 )
 
-from src.predict_optimize_evaluation import (
+from routeiq.predict_optimize_evaluation import (
     evaluate_routes_on_matrix,
     calculate_improvement_percent
 )
 
-from src.travel_time_matrix import (
+from routeiq.travel_time_matrix import (
     generate_routing_context,
     build_realized_travel_time_matrix
 )

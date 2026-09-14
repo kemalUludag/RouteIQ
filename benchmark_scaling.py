@@ -2,13 +2,13 @@ import time
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from src.data_generator import generate_cvrp_instance
-from src.distance import create_distance_matrix
-from src.routing import (
+from routeiq.data_generator import generate_cvrp_instance
+from routeiq.distance import create_distance_matrix
+from routeiq.routing import (
     find_best_cvrp_bruteforce,
     calculate_route_distance
 )
-from src.ortools_solver import solve_cvrp_ortools
+from routeiq.ortools_solver import solve_cvrp_ortools
 
 
 results = []

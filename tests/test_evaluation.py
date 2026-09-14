@@ -1,7 +1,7 @@
 import pytest
 
-from src.models import Solution
-from src.evaluation import (
+from routeiq.models import Solution
+from routeiq.evaluation import (
     calculate_optimality_gap
 )
 
