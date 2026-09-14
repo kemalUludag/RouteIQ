@@ -146,7 +146,7 @@ def main():
     # ==========================================
 
     results_df.to_csv(
-        "data/ml_validation_predictions.csv",
+        "results/ml/ml_validation_predictions.csv",
         index=False
     )
 
@@ -182,7 +182,7 @@ def main():
     )
 
     road_summary.to_csv(
-        "data/ml_error_by_road_type.csv",
+        "results/ml/ml_error_by_road_type.csv",
         index=False
     )
 
@@ -218,7 +218,7 @@ def main():
     )
 
     weather_summary.to_csv(
-        "data/ml_error_by_weather.csv",
+        "results/ml/ml_error_by_weather.csv",
         index=False
     )
 
@@ -254,7 +254,7 @@ def main():
     )
 
     traffic_summary.to_csv(
-        "data/ml_error_by_traffic.csv",
+        "results/ml/ml_error_by_traffic.csv",
         index=False
     )
 
@@ -309,7 +309,7 @@ def main():
     )
 
     distance_summary.to_csv(
-        "data/ml_error_by_distance.csv",
+        "results/ml/ml_error_by_distance.csv",
         index=False
     )
 
@@ -398,23 +398,23 @@ def main():
     )
 
     print(
-        "data/ml_validation_predictions.csv"
+        "results/ml/ml_validation_predictions.csv"
     )
 
     print(
-        "data/ml_error_by_road_type.csv"
+        "results/ml/ml_error_by_road_type.csv"
     )
 
     print(
-        "data/ml_error_by_weather.csv"
+        "results/ml/ml_error_by_weather.csv"
     )
 
     print(
-        "data/ml_error_by_traffic.csv"
+        "results/ml/ml_error_by_traffic.csv"
     )
 
     print(
-        "data/ml_error_by_distance.csv"
+        "results/ml/ml_error_by_distance.csv"
     )
 
     print(

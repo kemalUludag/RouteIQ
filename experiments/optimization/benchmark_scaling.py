@@ -175,7 +175,7 @@ print(results_df)
 # -------------------------
 
 results_df.to_csv(
-    "data/scaling_results.csv",
+    "results/optimization/scaling_results.csv",
     index=False
 )
 
@@ -207,7 +207,7 @@ plt.title("CVRP Solver Runtime Comparison")
 plt.legend()
 
 plt.savefig(
-    "data/scaling_runtime.png",
+    "results/optimization/scaling_runtime.png",
     dpi=300,
     bbox_inches="tight"
 )
@@ -244,7 +244,7 @@ plt.title("CVRP Solver Runtime Comparison - Log Scale")
 plt.legend()
 
 plt.savefig(
-    "data/scaling_runtime_log.png",
+    "results/optimization/scaling_runtime_log.png",
     dpi=300,
     bbox_inches="tight"
 )

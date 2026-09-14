@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 
 pairwise_df = pd.read_csv(
-    "data/budget_pairwise_summary.csv"
+    "results/optimization/budget_pairwise_summary.csv"
 )
 
 
@@ -65,7 +65,7 @@ plt.legend()
 plt.tight_layout()
 
 plt.savefig(
-    "data/budget_quality_vs_time.png",
+    "results/optimization/budget_quality_vs_time.png",
     dpi=300
 )
 
@@ -109,7 +109,7 @@ plt.legend()
 plt.tight_layout()
 
 plt.savefig(
-    "data/budget_loss_rate.png",
+    "results/optimization/budget_loss_rate.png",
     dpi=300
 )
 
@@ -117,7 +117,7 @@ plt.close()
 
 
 print("Saved:")
-print("data/budget_quality_vs_time.png")
-print("data/budget_loss_rate.png")
+print("results/optimization/budget_quality_vs_time.png")
+print("results/optimization/budget_loss_rate.png")
 
 

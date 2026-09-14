@@ -115,7 +115,7 @@ for seed in seeds:
 results_df = pd.DataFrame(results)
 
 results_df.to_csv(
-    "data/time_limit_results.csv",
+    "results/optimization/time_limit_results.csv",
     index=False
 )
 
@@ -138,7 +138,7 @@ summary_df = (
 )
 
 summary_df.to_csv(
-    "data/time_limit_summary.csv",
+    "results/optimization/time_limit_summary.csv",
     index=False
 )
 
@@ -167,7 +167,7 @@ plt.ylabel("Mean Route Distance")
 plt.title("Solution Quality vs OR-Tools Search Time")
 
 plt.savefig(
-    "data/time_limit_quality.png",
+    "results/optimization/time_limit_quality.png",
     dpi=300,
     bbox_inches="tight"
 )

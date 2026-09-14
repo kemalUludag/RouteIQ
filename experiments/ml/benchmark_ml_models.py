@@ -131,7 +131,7 @@ def main():
     )
 
     results_df.to_csv(
-        "data/ml_model_comparison_validation.csv",
+        "results/ml/ml_model_comparison_validation.csv",
         index=False
     )
 

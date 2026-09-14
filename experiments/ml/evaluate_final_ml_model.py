@@ -144,7 +144,7 @@ def main():
     )
 
     results_df.to_csv(
-        "data/ml_final_test_results.csv",
+        "results/ml/ml_final_test_results.csv",
         index=False
     )
 
@@ -186,7 +186,7 @@ def main():
     )
 
     predictions_df.to_csv(
-        "data/ml_final_test_predictions.csv",
+        "results/ml/ml_final_test_predictions.csv",
         index=False
     )
 
@@ -195,7 +195,7 @@ def main():
     # ==========================================
 
     baseline_df = pd.read_csv(
-        "data/ml_baseline_validation.csv"
+        "results/ml/ml_baseline_validation.csv"
     )
 
     baseline_mae = (
@@ -269,11 +269,11 @@ def main():
     )
 
     print(
-        "data/ml_final_test_results.csv"
+        "results/ml/ml_final_test_results.csv"
     )
 
     print(
-        "data/ml_final_test_predictions.csv"
+        "results/ml/ml_final_test_predictions.csv"
     )
 
     print(

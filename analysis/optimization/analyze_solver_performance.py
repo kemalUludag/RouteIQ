@@ -6,7 +6,7 @@ from routeiq.result_analysis import (
 
 
 results_df = pd.read_csv(
-    "data/experiment_results.csv"
+    "results/optimization/experiment_results.csv"
 )
 
 
@@ -18,7 +18,7 @@ comparison_df = compare_solver_to_baseline(
 
 
 comparison_df.to_csv(
-    "data/solver_pairwise_results.csv",
+    "results/optimization/solver_pairwise_results.csv",
     index=False
 )
 
@@ -122,7 +122,7 @@ summary_df[
 )
 
 summary_df.to_csv(
-    "data/solver_pairwise_summary.csv",
+    "results/optimization/solver_pairwise_summary.csv",
     index=False
 )
 
@@ -144,9 +144,9 @@ print(
 )
 
 print(
-    "data/solver_pairwise_results.csv"
+    "results/optimization/solver_pairwise_results.csv"
 )
 
 print(
-    "data/solver_pairwise_summary.csv"
+    "results/optimization/solver_pairwise_summary.csv"
 )

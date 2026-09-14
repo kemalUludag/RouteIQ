@@ -93,7 +93,7 @@ def main():
     )
 
     results_df.to_csv(
-        "data/ml_feature_engineering_validation.csv",
+        "results/ml/ml_feature_engineering_validation.csv",
         index=False
     )
 

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def main():
     summary_df = pd.read_csv(
-        "data/gurobi_budget_summary.csv"
+        "results/optimization/gurobi_budget_summary.csv"
     )
 
     # ==========================================
@@ -49,7 +49,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/gurobi_budget_mip_gap.png",
+        "results/optimization/gurobi_budget_mip_gap.png",
         dpi=300
     )
 
@@ -102,7 +102,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/gurobi_budget_optimality_rate.png",
+        "results/optimization/gurobi_budget_optimality_rate.png",
         dpi=300
     )
 
@@ -155,7 +155,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/gurobi_budget_feasibility_rate.png",
+        "results/optimization/gurobi_budget_feasibility_rate.png",
         dpi=300
     )
 
@@ -163,13 +163,13 @@ def main():
 
     print("Saved:")
     print(
-        "data/gurobi_budget_mip_gap.png"
+        "results/optimization/gurobi_budget_mip_gap.png"
     )
     print(
-        "data/gurobi_budget_optimality_rate.png"
+        "results/optimization/gurobi_budget_optimality_rate.png"
     )
     print(
-        "data/gurobi_budget_feasibility_rate.png"
+        "results/optimization/gurobi_budget_feasibility_rate.png"
     )
 
 

@@ -63,7 +63,7 @@ def main():
     # ==========================================
 
     baseline_df = pd.read_csv(
-        "data/ml_baseline_validation.csv"
+        "results/ml/ml_baseline_validation.csv"
     )
 
     baseline_mae = (
@@ -115,7 +115,7 @@ def main():
     )
 
     results_df.to_csv(
-        "data/ml_linear_validation.csv",
+        "results/ml/ml_linear_validation.csv",
         index=False
     )
 
@@ -161,7 +161,7 @@ def main():
     )
 
     print(
-        "data/ml_linear_validation.csv"
+        "results/ml/ml_linear_validation.csv"
     )
 
     print(

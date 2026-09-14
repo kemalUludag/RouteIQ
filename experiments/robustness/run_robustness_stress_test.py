@@ -67,7 +67,7 @@ def main():
     # ==================================================
 
     decision_df = pd.read_csv(
-        "data/predict_optimize_final_results.csv"
+        "results/predict_optimize/predict_optimize_final_results.csv"
     )
 
     realization_rows = []
@@ -830,7 +830,7 @@ def main():
     )
 
     realization_df.to_csv(
-        "data/robustness_stress_realizations.csv",
+        "results/robustness/robustness_stress_realizations.csv",
         index=False
     )
 
@@ -846,7 +846,7 @@ def main():
     )
 
     scenario_summary_df.to_csv(
-        "data/robustness_stress_scenario_summary.csv",
+        "results/robustness/robustness_stress_scenario_summary.csv",
         index=False
     )
 
@@ -941,7 +941,7 @@ def main():
     )
 
     stress_summary.to_csv(
-        "data/robustness_stress_summary.csv",
+        "results/robustness/robustness_stress_summary.csv",
         index=False
     )
 
@@ -1011,15 +1011,15 @@ def main():
     )
 
     print(
-        "data/robustness_stress_realizations.csv"
+        "results/robustness/robustness_stress_realizations.csv"
     )
 
     print(
-        "data/robustness_stress_scenario_summary.csv"
+        "results/robustness/robustness_stress_scenario_summary.csv"
     )
 
     print(
-        "data/robustness_stress_summary.csv"
+        "results/robustness/robustness_stress_summary.csv"
     )
 
 

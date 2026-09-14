@@ -22,15 +22,15 @@ def main():
     # ==================================================
 
     realization_df = pd.read_csv(
-        "data/stochastic_realization_results.csv"
+        "results/robustness/stochastic_realization_results.csv"
     )
 
     scenario_df = pd.read_csv(
-        "data/stochastic_scenario_summary.csv"
+        "results/robustness/stochastic_scenario_summary.csv"
     )
 
     decision_df = pd.read_csv(
-        "data/predict_optimize_final_results.csv"
+        "results/predict_optimize/predict_optimize_final_results.csv"
     )
 
     # ==================================================
@@ -518,27 +518,27 @@ def main():
     # ==================================================
 
     realization_df.to_csv(
-        "data/stochastic_realization_analysis.csv",
+        "results/robustness/stochastic_realization_analysis.csv",
         index=False
     )
 
     scenario_analysis.to_csv(
-        "data/stochastic_scenario_analysis.csv",
+        "results/robustness/stochastic_scenario_analysis.csv",
         index=False
     )
 
     bootstrap_df.to_csv(
-        "data/stochastic_cluster_bootstrap.csv",
+        "results/robustness/stochastic_cluster_bootstrap.csv",
         index=False
     )
 
     regime_summary.to_csv(
-        "data/stochastic_regime_summary.csv",
+        "results/robustness/stochastic_regime_summary.csv",
         index=False
     )
 
     expected_outcome_summary.to_csv(
-        "data/stochastic_expected_outcome_summary.csv",
+        "results/robustness/stochastic_expected_outcome_summary.csv",
         index=False
     )
 
@@ -727,23 +727,23 @@ def main():
     )
 
     print(
-        "data/stochastic_realization_analysis.csv"
+        "results/robustness/stochastic_realization_analysis.csv"
     )
 
     print(
-        "data/stochastic_scenario_analysis.csv"
+        "results/robustness/stochastic_scenario_analysis.csv"
     )
 
     print(
-        "data/stochastic_cluster_bootstrap.csv"
+        "results/robustness/stochastic_cluster_bootstrap.csv"
     )
 
     print(
-        "data/stochastic_regime_summary.csv"
+        "results/robustness/stochastic_regime_summary.csv"
     )
 
     print(
-        "data/stochastic_expected_outcome_summary.csv"
+        "results/robustness/stochastic_expected_outcome_summary.csv"
     )
 
 

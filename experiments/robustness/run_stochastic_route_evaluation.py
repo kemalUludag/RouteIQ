@@ -40,7 +40,7 @@ def main():
     # ==================================================
 
     decision_df = pd.read_csv(
-        "data/predict_optimize_final_results.csv"
+        "results/predict_optimize/predict_optimize_final_results.csv"
     )
 
     realization_rows = []
@@ -603,7 +603,7 @@ def main():
     )
 
     realization_df.to_csv(
-        "data/stochastic_realization_results.csv",
+        "results/robustness/stochastic_realization_results.csv",
         index=False
     )
 
@@ -618,7 +618,7 @@ def main():
     )
 
     scenario_summary_df.to_csv(
-        "data/stochastic_scenario_summary.csv",
+        "results/robustness/stochastic_scenario_summary.csv",
         index=False
     )
 
@@ -695,11 +695,11 @@ def main():
     )
 
     print(
-        "data/stochastic_realization_results.csv"
+        "results/robustness/stochastic_realization_results.csv"
     )
 
     print(
-        "data/stochastic_scenario_summary.csv"
+        "results/robustness/stochastic_scenario_summary.csv"
     )
 
 

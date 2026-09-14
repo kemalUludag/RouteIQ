@@ -9,7 +9,7 @@ from routeiq.result_analysis import (
 def main():
 
     scenario_df = pd.read_csv(
-        "data/stochastic_scenario_analysis.csv"
+        "results/robustness/stochastic_scenario_analysis.csv"
     )
 
     # ==================================================
@@ -110,7 +110,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/stochastic_regime_improvement.png",
+        "results/robustness/stochastic_regime_improvement.png",
         dpi=300
     )
 
@@ -180,7 +180,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/stochastic_expected_vs_realized.png",
+        "results/robustness/stochastic_expected_vs_realized.png",
         dpi=300
     )
 
@@ -285,7 +285,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/stochastic_outcome_probabilities.png",
+        "results/robustness/stochastic_outcome_probabilities.png",
         dpi=300
     )
 
@@ -296,15 +296,15 @@ def main():
     )
 
     print(
-        "data/stochastic_regime_improvement.png"
+        "results/robustness/stochastic_regime_improvement.png"
     )
 
     print(
-        "data/stochastic_expected_vs_realized.png"
+        "results/robustness/stochastic_expected_vs_realized.png"
     )
 
     print(
-        "data/stochastic_outcome_probabilities.png"
+        "results/robustness/stochastic_outcome_probabilities.png"
     )
 
 

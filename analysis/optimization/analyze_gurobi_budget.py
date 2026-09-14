@@ -15,7 +15,7 @@ COMPARISONS = [
 
 def main():
     results_df = pd.read_csv(
-        "data/gurobi_budget_results.csv"
+        "results/optimization/gurobi_budget_results.csv"
     )
 
     analysis_rows = []
@@ -250,7 +250,7 @@ def main():
     )
 
     analysis_df.to_csv(
-        "data/gurobi_budget_paired_analysis.csv",
+        "results/optimization/gurobi_budget_paired_analysis.csv",
         index=False
     )
 

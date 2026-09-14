@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def main():
     summary_df = pd.read_csv(
-        "data/gurobi_exact_summary.csv"
+        "results/optimization/gurobi_exact_summary.csv"
     )
 
     # ==========================================
@@ -54,7 +54,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/gurobi_exact_runtime_scaling.png",
+        "results/optimization/gurobi_exact_runtime_scaling.png",
         dpi=300
     )
 
@@ -91,7 +91,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/gurobi_node_scaling.png",
+        "results/optimization/gurobi_node_scaling.png",
         dpi=300
     )
 
@@ -102,11 +102,11 @@ def main():
     )
 
     print(
-        "data/gurobi_exact_runtime_scaling.png"
+        "results/optimization/gurobi_exact_runtime_scaling.png"
     )
 
     print(
-        "data/gurobi_node_scaling.png"
+        "results/optimization/gurobi_node_scaling.png"
     )
 
 

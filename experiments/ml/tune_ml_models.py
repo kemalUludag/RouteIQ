@@ -317,7 +317,7 @@ def main():
     )
 
     results_df.to_csv(
-        "data/ml_tuning_validation.csv",
+        "results/ml/ml_tuning_validation.csv",
         index=False
     )
 
@@ -334,7 +334,7 @@ def main():
     }
 
     with open(
-        "data/ml_best_parameters.json",
+        "results/ml/ml_best_parameters.json",
         "w"
     ) as file:
         json.dump(
@@ -352,7 +352,7 @@ def main():
     )
 
     rf_cv_results.to_csv(
-        "data/ml_rf_cv_results.csv",
+        "results/ml/ml_rf_cv_results.csv",
         index=False
     )
 
@@ -361,7 +361,7 @@ def main():
     )
 
     gb_cv_results.to_csv(
-        "data/ml_gb_cv_results.csv",
+        "results/ml/ml_gb_cv_results.csv",
         index=False
     )
 
@@ -417,19 +417,19 @@ def main():
     )
 
     print(
-        "data/ml_tuning_validation.csv"
+        "results/ml/ml_tuning_validation.csv"
     )
 
     print(
-        "data/ml_best_parameters.json"
+        "results/ml/ml_best_parameters.json"
     )
 
     print(
-        "data/ml_rf_cv_results.csv"
+        "results/ml/ml_rf_cv_results.csv"
     )
 
     print(
-        "data/ml_gb_cv_results.csv"
+        "results/ml/ml_gb_cv_results.csv"
     )
 
     print(

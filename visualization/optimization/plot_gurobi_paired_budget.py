@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def main():
     analysis_df = pd.read_csv(
-        "data/gurobi_budget_paired_analysis.csv"
+        "results/optimization/gurobi_budget_paired_analysis.csv"
     )
 
     # We focus on the broadest budget comparison:
@@ -76,7 +76,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/gurobi_paired_incumbent_improvement.png",
+        "results/optimization/gurobi_paired_incumbent_improvement.png",
         dpi=300
     )
 
@@ -138,7 +138,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/gurobi_paired_gap_reduction.png",
+        "results/optimization/gurobi_paired_gap_reduction.png",
         dpi=300
     )
 
@@ -146,10 +146,10 @@ def main():
 
     print("Saved:")
     print(
-        "data/gurobi_paired_incumbent_improvement.png"
+        "results/optimization/gurobi_paired_incumbent_improvement.png"
     )
     print(
-        "data/gurobi_paired_gap_reduction.png"
+        "results/optimization/gurobi_paired_gap_reduction.png"
     )
 
 

@@ -99,7 +99,7 @@ def main():
     # ==================================================
 
     df = pd.read_csv(
-        "data/robustness_stress_scenario_summary.csv"
+        "results/robustness/robustness_stress_scenario_summary.csv"
     )
 
     # ==================================================
@@ -614,22 +614,22 @@ def main():
     # ==================================================
 
     stress_bootstrap_df.to_csv(
-        "data/robustness_stress_cluster_bootstrap.csv",
+        "results/robustness/robustness_stress_cluster_bootstrap.csv",
         index=False
     )
 
     paired_change_df.to_csv(
-        "data/robustness_stress_paired_changes.csv",
+        "results/robustness/robustness_stress_paired_changes.csv",
         index=False
     )
 
     regime_stress_summary.to_csv(
-        "data/robustness_regime_stress_summary.csv",
+        "results/robustness/robustness_regime_stress_summary.csv",
         index=False
     )
 
     sensitivity_df.to_csv(
-        "data/robustness_scenario_sensitivity.csv",
+        "results/robustness/robustness_scenario_sensitivity.csv",
         index=False
     )
 
@@ -773,19 +773,19 @@ def main():
     )
 
     print(
-        "data/robustness_stress_cluster_bootstrap.csv"
+        "results/robustness/robustness_stress_cluster_bootstrap.csv"
     )
 
     print(
-        "data/robustness_stress_paired_changes.csv"
+        "results/robustness/robustness_stress_paired_changes.csv"
     )
 
     print(
-        "data/robustness_regime_stress_summary.csv"
+        "results/robustness/robustness_regime_stress_summary.csv"
     )
 
     print(
-        "data/robustness_scenario_sensitivity.csv"
+        "results/robustness/robustness_scenario_sensitivity.csv"
     )
 
 

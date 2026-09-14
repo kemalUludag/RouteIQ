@@ -344,7 +344,7 @@ def main():
     )
 
     results_df.to_csv(
-        "data/predict_optimize_demo.csv",
+        "results/predict_optimize/predict_optimize_demo.csv",
         index=False
     )
 
@@ -496,7 +496,7 @@ def main():
     )
 
     print(
-        "data/predict_optimize_demo.csv"
+        "results/predict_optimize/predict_optimize_demo.csv"
     )
 
 

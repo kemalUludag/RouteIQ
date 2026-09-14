@@ -7,7 +7,7 @@ from routeiq.result_analysis import (
 
 
 results_df = pd.read_csv(
-    "data/budget_experiment_results.csv"
+    "results/optimization/budget_experiment_results.csv"
 )
 
 
@@ -58,7 +58,7 @@ solver_summary = (
 
 
 solver_summary.to_csv(
-    "data/budget_solver_summary.csv",
+    "results/optimization/budget_solver_summary.csv",
     index=False
 )
 
@@ -97,7 +97,7 @@ pairwise_results = pd.concat(
 
 
 pairwise_results.to_csv(
-    "data/budget_pairwise_results.csv",
+    "results/optimization/budget_pairwise_results.csv",
     index=False
 )
 
@@ -257,7 +257,7 @@ pairwise_summary["loss_rate"] = (
 
 
 pairwise_summary.to_csv(
-    "data/budget_pairwise_summary.csv",
+    "results/optimization/budget_pairwise_summary.csv",
     index=False
 )
 
@@ -394,7 +394,7 @@ budget_comparison_summary = (
 
 
 budget_comparison_summary.to_csv(
-    "data/budget_direct_comparison.csv",
+    "results/optimization/budget_direct_comparison.csv",
     index=False
 )
 

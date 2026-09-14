@@ -150,7 +150,7 @@ def main():
     )
 
     results_df.to_csv(
-        "data/gurobi_budget_results.csv",
+        "results/optimization/gurobi_budget_results.csv",
         index=False
     )
 
@@ -223,7 +223,7 @@ def main():
     )
 
     summary_df.to_csv(
-        "data/gurobi_budget_summary.csv",
+        "results/optimization/gurobi_budget_summary.csv",
         index=False
     )
 

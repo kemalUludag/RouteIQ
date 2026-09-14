@@ -250,7 +250,7 @@ def main():
     )
 
     results_df.to_csv(
-        "data/ml_final_model_comparison.csv",
+        "results/ml/ml_final_model_comparison.csv",
         index=False
     )
 
@@ -264,7 +264,7 @@ def main():
     )
 
     all_predictions_df.to_csv(
-        "data/ml_final_model_predictions.csv",
+        "results/ml/ml_final_model_predictions.csv",
         index=False
     )
 

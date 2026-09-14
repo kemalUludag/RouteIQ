@@ -99,7 +99,7 @@ for num_customers in customer_sizes:
 results_df = pd.DataFrame(results)
 
 results_df.to_csv(
-    "data/multiseed_results.csv",
+    "results/optimization/multiseed_results.csv",
     index=False
 )
 
@@ -121,7 +121,7 @@ summary_df = (
 
 
 summary_df.to_csv(
-    "data/multiseed_summary.csv",
+    "results/optimization/multiseed_summary.csv",
     index=False
 )
 
@@ -145,7 +145,7 @@ plt.ylabel("Mean Route Distance")
 plt.title("OR-Tools CVRP Performance Across Random Instances")
 
 plt.savefig(
-    "data/multiseed_distance_summary.png",
+    "results/optimization/multiseed_distance_summary.png",
     dpi=300,
     bbox_inches="tight"
 )

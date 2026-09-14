@@ -110,7 +110,7 @@ def main():
     )
 
     results_df.to_csv(
-        "data/ml_baseline_validation.csv",
+        "results/ml/ml_baseline_validation.csv",
         index=False
     )
 
@@ -161,7 +161,7 @@ def main():
     )
 
     print(
-        "data/ml_baseline_validation.csv"
+        "results/ml/ml_baseline_validation.csv"
     )
 
     print(

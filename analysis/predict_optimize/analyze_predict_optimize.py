@@ -8,7 +8,7 @@ def main():
     # ==========================================
 
     df = pd.read_csv(
-        "data/predict_optimize_results.csv"
+        "results/predict_optimize/predict_optimize_results.csv"
     )
 
     # ==========================================
@@ -242,17 +242,17 @@ def main():
     # ==========================================
 
     environment_summary.to_csv(
-        "data/predict_optimize_environment_summary.csv",
+        "results/predict_optimize/predict_optimize_environment_summary.csv",
         index=False
     )
 
     network_summary.to_csv(
-        "data/predict_optimize_network_summary.csv",
+        "results/predict_optimize/predict_optimize_network_summary.csv",
         index=False
     )
 
     nonzero_regret.to_csv(
-        "data/predict_optimize_nonzero_regret.csv",
+        "results/predict_optimize/predict_optimize_nonzero_regret.csv",
         index=False
     )
 

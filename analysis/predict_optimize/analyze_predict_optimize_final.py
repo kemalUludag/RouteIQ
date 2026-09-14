@@ -19,7 +19,7 @@ def main():
     # ==========================================
 
     df = pd.read_csv(
-        "data/predict_optimize_final_results.csv"
+        "results/predict_optimize/predict_optimize_final_results.csv"
     )
 
     # ==========================================
@@ -445,17 +445,17 @@ def main():
     # ==========================================
 
     bootstrap_summary.to_csv(
-        "data/predict_optimize_cluster_bootstrap.csv",
+        "results/predict_optimize/predict_optimize_cluster_bootstrap.csv",
         index=False
     )
 
     scenario_summary.to_csv(
-        "data/predict_optimize_final_scenario_summary.csv",
+        "results/predict_optimize/predict_optimize_final_scenario_summary.csv",
         index=False
     )
 
     network_summary.to_csv(
-        "data/predict_optimize_final_network_summary.csv",
+        "results/predict_optimize/predict_optimize_final_network_summary.csv",
         index=False
     )
 
@@ -664,15 +664,15 @@ def main():
     )
 
     print(
-        "data/predict_optimize_cluster_bootstrap.csv"
+        "results/predict_optimize/predict_optimize_cluster_bootstrap.csv"
     )
 
     print(
-        "data/predict_optimize_final_scenario_summary.csv"
+        "results/predict_optimize/predict_optimize_final_scenario_summary.csv"
     )
 
     print(
-        "data/predict_optimize_final_network_summary.csv"
+        "results/predict_optimize/predict_optimize_final_network_summary.csv"
     )
 
 

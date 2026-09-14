@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 
 results_df = pd.read_csv(
-    "data/experiment_results.csv"
+    "results/optimization/experiment_results.csv"
 )
 
 
@@ -55,7 +55,7 @@ plt.legend()
 plt.tight_layout()
 
 plt.savefig(
-    "data/experiment_runtime_scaling.png",
+    "results/optimization/experiment_runtime_scaling.png",
     dpi=300
 )
 
@@ -118,7 +118,7 @@ plt.title(
 plt.tight_layout()
 
 plt.savefig(
-    "data/experiment_objective_parity.png",
+    "results/optimization/experiment_objective_parity.png",
     dpi=300
 )
 
@@ -130,10 +130,10 @@ print(
 )
 
 print(
-    "data/experiment_runtime_scaling.png"
+    "results/optimization/experiment_runtime_scaling.png"
 )
 
 print(
-    "data/experiment_objective_parity.png"
+    "results/optimization/experiment_objective_parity.png"
 )
 

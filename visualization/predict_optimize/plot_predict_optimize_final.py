@@ -9,7 +9,7 @@ from routeiq.result_analysis import (
 def main():
 
     df = pd.read_csv(
-        "data/predict_optimize_final_results.csv"
+        "results/predict_optimize/predict_optimize_final_results.csv"
     )
 
     # ==================================================
@@ -98,7 +98,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/predict_optimize_oracle_regret.png",
+        "results/predict_optimize/predict_optimize_oracle_regret.png",
         dpi=300
     )
 
@@ -203,7 +203,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/predict_optimize_scenario_improvement.png",
+        "results/predict_optimize/predict_optimize_scenario_improvement.png",
         dpi=300
     )
 
@@ -253,7 +253,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/predict_optimize_improvement_distribution.png",
+        "results/predict_optimize/predict_optimize_improvement_distribution.png",
         dpi=300
     )
 
@@ -264,15 +264,15 @@ def main():
     )
 
     print(
-        "data/predict_optimize_oracle_regret.png"
+        "results/predict_optimize/predict_optimize_oracle_regret.png"
     )
 
     print(
-        "data/predict_optimize_scenario_improvement.png"
+        "results/predict_optimize/predict_optimize_scenario_improvement.png"
     )
 
     print(
-        "data/predict_optimize_improvement_distribution.png"
+        "results/predict_optimize/predict_optimize_improvement_distribution.png"
     )
 
 

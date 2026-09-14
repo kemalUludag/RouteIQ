@@ -73,7 +73,7 @@ results_df = runner.run(
 
 
 results_df.to_csv(
-    "data/experiment_results.csv",
+    "results/optimization/experiment_results.csv",
     index=False
 )
 
@@ -123,7 +123,7 @@ summary_df = (
 
 
 summary_df.to_csv(
-    "data/experiment_summary.csv",
+    "results/optimization/experiment_summary.csv",
     index=False
 )
 
@@ -142,10 +142,10 @@ print(
 )
 
 print(
-    "data/experiment_results.csv"
+    "results/optimization/experiment_results.csv"
 )
 
 print(
-    "data/experiment_summary.csv"
+    "results/optimization/experiment_summary.csv"
 )
 

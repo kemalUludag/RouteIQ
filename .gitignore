@@ -6,14 +6,14 @@ __pycache__/
 .DS_Store
 data/trip_data.csv
 # Large reproducible experiment outputs
-data/robustness_stress_realizations.csv
-data/stochastic_realization_results.csv
-data/stochastic_realization_analysis.csv
+results/robustness/robustness_stress_realizations.csv
+results/robustness/stochastic_realization_results.csv
+results/robustness/stochastic_realization_analysis.csv
 
 # Pilot predict-optimize outputs
-data/predict_optimize_demo.csv
-data/predict_optimize_results.csv
-data/predict_optimize_environment_summary.csv
-data/predict_optimize_network_summary.csv
-data/predict_optimize_nonzero_regret.csv
+results/predict_optimize/predict_optimize_demo.csv
+results/predict_optimize/predict_optimize_results.csv
+results/predict_optimize/predict_optimize_environment_summary.csv
+results/predict_optimize/predict_optimize_network_summary.csv
+results/predict_optimize/predict_optimize_nonzero_regret.csv
 *.egg-info/

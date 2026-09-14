@@ -53,7 +53,7 @@ def get_cluster_ci(
 def main():
 
     df = pd.read_csv(
-        "data/robustness_stress_scenario_summary.csv"
+        "results/robustness/robustness_stress_scenario_summary.csv"
     )
 
     # ==================================================
@@ -129,7 +129,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/robustness_mean_gain.png",
+        "results/robustness/robustness_mean_gain.png",
         dpi=300
     )
 
@@ -201,7 +201,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/robustness_reliability.png",
+        "results/robustness/robustness_reliability.png",
         dpi=300
     )
 
@@ -275,7 +275,7 @@ def main():
     plt.tight_layout()
 
     plt.savefig(
-        "data/robustness_variability.png",
+        "results/robustness/robustness_variability.png",
         dpi=300
     )
 
@@ -286,15 +286,15 @@ def main():
     )
 
     print(
-        "data/robustness_mean_gain.png"
+        "results/robustness/robustness_mean_gain.png"
     )
 
     print(
-        "data/robustness_reliability.png"
+        "results/robustness/robustness_reliability.png"
     )
 
     print(
-        "data/robustness_variability.png"
+        "results/robustness/robustness_variability.png"
     )
 
 
