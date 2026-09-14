@@ -182,3 +182,188 @@ def bootstrap_mean_confidence_interval(
 
     return lower, upper
 
+
+def cluster_bootstrap_mean_confidence_interval(
+    df,
+    cluster_column,
+    value_column,
+    confidence_level=0.95,
+    num_bootstrap_samples=10000,
+    seed=42
+):
+    # ==========================================
+    # Validate arguments
+    # ==========================================
+
+    if cluster_column not in df.columns:
+        raise ValueError(
+            f"Unknown cluster column: "
+            f"{cluster_column}"
+        )
+
+    if value_column not in df.columns:
+        raise ValueError(
+            f"Unknown value column: "
+            f"{value_column}"
+        )
+
+    if not (
+        0.0
+        < confidence_level
+        < 1.0
+    ):
+        raise ValueError(
+            "confidence_level must be "
+            "between 0 and 1."
+        )
+
+    if num_bootstrap_samples <= 0:
+        raise ValueError(
+            "num_bootstrap_samples must "
+            "be positive."
+        )
+
+    # ==========================================
+    # Keep only usable observations
+    # ==========================================
+
+    working_df = (
+        df[
+            [
+                cluster_column,
+                value_column
+            ]
+        ]
+        .dropna()
+        .copy()
+    )
+
+    if working_df.empty:
+        raise ValueError(
+            "No valid observations "
+            "available for bootstrap."
+        )
+
+    # ==========================================
+    # Identify independent clusters
+    # ==========================================
+
+    cluster_ids = (
+        working_df[
+            cluster_column
+        ]
+        .drop_duplicates()
+        .to_numpy()
+    )
+
+    # Store each cluster's complete set
+    # of repeated observations.
+    #
+    # In RouteIQ:
+    #
+    # network 0 -> 4 scenarios
+    # network 1 -> 4 scenarios
+    # ...
+    #
+    # These four observations stay together
+    # whenever a network is resampled.
+    # ==========================================
+
+    cluster_values = {
+        cluster_id:
+            working_df.loc[
+                working_df[
+                    cluster_column
+                ]
+                == cluster_id,
+                value_column
+            ]
+            .to_numpy(
+                dtype=float
+            )
+
+        for cluster_id
+        in cluster_ids
+    }
+
+    rng = np.random.default_rng(
+        seed
+    )
+
+    bootstrap_means = np.empty(
+        num_bootstrap_samples,
+        dtype=float
+    )
+
+    # ==========================================
+    # Cluster bootstrap
+    # ==========================================
+
+    for bootstrap_index in range(
+        num_bootstrap_samples
+    ):
+
+        sampled_clusters = (
+            rng.choice(
+                cluster_ids,
+                size=len(cluster_ids),
+                replace=True
+            )
+        )
+
+        # IMPORTANT:
+        #
+        # If network 7 is sampled twice,
+        # all four observations belonging
+        # to network 7 must appear twice.
+        #
+        # Using df.isin(...) would NOT do this
+        # correctly because duplicates would
+        # disappear.
+        # ==========================================
+
+        sampled_values = np.concatenate(
+            [
+                cluster_values[
+                    cluster_id
+                ]
+
+                for cluster_id
+                in sampled_clusters
+            ]
+        )
+
+        bootstrap_means[
+            bootstrap_index
+        ] = np.mean(
+            sampled_values
+        )
+
+    # ==========================================
+    # Percentile confidence interval
+    # ==========================================
+
+    alpha = (
+        1.0
+        - confidence_level
+    ) / 2.0
+
+    lower_bound = np.quantile(
+        bootstrap_means,
+        alpha
+    )
+
+    upper_bound = np.quantile(
+        bootstrap_means,
+        1.0 - alpha
+    )
+
+    return (
+        float(
+            lower_bound
+        ),
+        float(
+            upper_bound
+        )
+    )
+

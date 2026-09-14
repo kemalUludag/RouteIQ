@@ -1,0 +1,4 @@
+expected_outcome_vs_free_flow,scenarios,mean_realized_improvement,mean_win_probability,mean_tie_probability,mean_loss_probability
+loss,13,-0.5187087677829021,0.46384615384615385,0.0,0.5361538461538462
+tie,48,7.9229786691443315e-16,0.0,1.0,0.0
+win,59,2.8410100970905283,0.7116949152542373,0.0,0.2883050847457627

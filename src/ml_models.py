@@ -184,3 +184,21 @@ def build_engineered_gradient_boosting_pipeline():
         ]
     )
 
+
+def build_final_gradient_boosting_pipeline():
+
+    model = (
+        build_engineered_gradient_boosting_pipeline()
+    )
+
+    model.set_params(
+        model__subsample=0.7,
+        model__n_estimators=250,
+        model__min_samples_split=10,
+        model__min_samples_leaf=2,
+        model__max_depth=4,
+        model__learning_rate=0.05
+    )
+
+    return model
+

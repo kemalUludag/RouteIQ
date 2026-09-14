@@ -2,6 +2,11 @@ import pandas as pd
 import pytest
 
 from src.result_analysis import (
+    cluster_bootstrap_mean_confidence_interval
+)
+
+
+from src.result_analysis import (
     compare_solver_to_baseline,
     bootstrap_mean_confidence_interval
 )
@@ -136,5 +141,51 @@ def test_bootstrap_confidence_interval_for_constant_values():
 
     assert lower == pytest.approx(5.0)
     assert upper == pytest.approx(5.0)
+
+def test_cluster_bootstrap_constant_values():
+
+    df = pd.DataFrame(
+        {
+            "network_seed": [
+                0,
+                0,
+                1,
+                1,
+                2,
+                2
+            ],
+
+            "metric": [
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
+            ]
+        }
+    )
+
+    lower, upper = (
+        cluster_bootstrap_mean_confidence_interval(
+            df=df,
+            cluster_column=(
+                "network_seed"
+            ),
+            value_column=(
+                "metric"
+            ),
+            num_bootstrap_samples=1000,
+            seed=42
+        )
+    )
+
+    assert lower == pytest.approx(
+        5.0
+    )
+
+    assert upper == pytest.approx(
+        5.0
+    )
 
     

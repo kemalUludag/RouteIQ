@@ -89,3 +89,39 @@ def find_best_cvrp_bruteforce(
                         best_routes = [route1, route2]
 
     return best_routes, best_total_distance
+
+def calculate_route_cost(
+    route,
+    cost_matrix
+):
+    total_cost = 0.0
+
+    for i in range(
+        len(route) - 1
+    ):
+        from_node = route[i]
+        to_node = route[i + 1]
+
+        total_cost += (
+            cost_matrix[
+                from_node
+            ][
+                to_node
+            ]
+        )
+
+    return total_cost
+
+
+def calculate_routes_cost(
+    routes,
+    cost_matrix
+):
+    return sum(
+        calculate_route_cost(
+            route,
+            cost_matrix
+        )
+        for route in routes
+    )
+

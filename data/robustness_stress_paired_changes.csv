@@ -1,0 +1,19 @@
+comparison,metric,paired_scenarios,networks,mean_change,ci_lower,ci_upper
+moderate_minus_mild,Mean improvement change (pp),120,30,-0.00417338907960384,-0.02824053101150847,0.0187526717093856
+moderate_minus_mild,P90 improvement change (pp),120,30,0.23492723855249437,0.11993319846823165,0.3562671570562429
+moderate_minus_mild,Win probability change (pp),120,30,-3.841666666666667,-5.000208333333331,-2.716666666666667
+moderate_minus_mild,Loss probability change (pp),120,30,3.841666666666667,2.716666666666667,5.0002083333333305
+moderate_minus_mild,Conditional win probability change (pp),72,26,-6.402777777777778,-8.112676056338028,-4.743885959129862
+moderate_minus_mild,ML realized std change (min),120,30,6.407173516529174,6.114291776264085,6.714069030735244
+severe_minus_moderate,Mean improvement change (pp),120,30,-0.003182580113536845,-0.037049285777409825,0.030141950348290834
+severe_minus_moderate,P90 improvement change (pp),120,30,0.19002273678227458,0.09772666321233583,0.28100927005398096
+severe_minus_moderate,Win probability change (pp),120,30,-2.6749999999999994,-3.499999999999999,-1.8749999999999998
+severe_minus_moderate,Loss probability change (pp),120,30,2.675,1.875,3.5
+severe_minus_moderate,Conditional win probability change (pp),72,26,-4.458333333333332,-5.746268656716418,-3.2463768115942027
+severe_minus_moderate,ML realized std change (min),120,30,7.2780219243017354,6.958500719598912,7.613918490352702
+severe_minus_mild,Mean improvement change (pp),120,30,-0.0073559691931406835,-0.06503687380580897,0.04857558208835152
+severe_minus_mild,P90 improvement change (pp),120,30,0.42494997533476897,0.23274016250671975,0.6170402959024538
+severe_minus_mild,Win probability change (pp),120,30,-6.516666666666666,-8.383333333333333,-4.675
+severe_minus_mild,Loss probability change (pp),120,30,6.516666666666667,4.675,8.383333333333333
+severe_minus_mild,Conditional win probability change (pp),72,26,-10.86111111111111,-13.59702010779436,-8.144736842105264
+severe_minus_mild,ML realized std change (min),120,30,13.68519544083091,13.074228485613391,14.325697763814391

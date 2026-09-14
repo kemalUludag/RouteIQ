@@ -3,17 +3,31 @@ import time
 import gurobipy as gp
 from gurobipy import GRB
 
-from src.models import CVRPInstance, Solution
-from src.distance import create_distance_matrix
-from src.validation import validate_cvrp_routes
+from src.models import (
+    CVRPInstance,
+    Solution
+)
+
+from src.distance import (
+    create_distance_matrix
+)
+
+from src.routing import (
+    calculate_routes_cost
+)
+
+from src.validation import (
+    validate_cvrp_routes
+)
 
 
 class GurobiCVRPSolver:
+
     def __init__(
         self,
         time_limit_seconds=30,
         output_flag=0,
-        max_customers= None
+        max_customers=None
     ):
         self.time_limit_seconds = (
             time_limit_seconds
@@ -27,10 +41,15 @@ class GurobiCVRPSolver:
             max_customers
         )
 
+    # ==================================================
+    # Solver capability
+    # ==================================================
+
     def supports(
         self,
         instance: CVRPInstance
     ) -> bool:
+
         if self.max_customers is None:
             return True
 
@@ -39,22 +58,115 @@ class GurobiCVRPSolver:
             <= self.max_customers
         )
 
+    # ==================================================
+    # Cost-matrix validation
+    # ==================================================
+
+    def _validate_cost_matrix(
+        self,
+        instance: CVRPInstance,
+        cost_matrix
+    ):
+
+        expected_size = (
+            instance.num_nodes
+        )
+
+        if (
+            len(cost_matrix)
+            != expected_size
+        ):
+            raise ValueError(
+                "Cost matrix row count must match "
+                "the number of instance nodes."
+            )
+
+        for row in cost_matrix:
+
+            if (
+                len(row)
+                != expected_size
+            ):
+                raise ValueError(
+                    "Cost matrix must be square and "
+                    "match the number of instance nodes."
+                )
+
+    # ==================================================
+    # Standard distance-based interface
+    # ==================================================
+
     def solve(
         self,
         instance: CVRPInstance
     ) -> Solution:
 
-        start_time = time.perf_counter()
+        distance_matrix = (
+            create_distance_matrix(
+                instance.points
+            )
+        )
 
-        # ==================================================
+        return self._solve_with_cost_matrix(
+            instance=instance,
+            cost_matrix=distance_matrix,
+            objective_name="distance",
+            objective_unit="distance_units"
+        )
+
+    # ==================================================
+    # Public custom-cost interface
+    # ==================================================
+
+    def solve_with_cost_matrix(
+        self,
+        instance: CVRPInstance,
+        cost_matrix,
+        objective_name="custom_cost",
+        objective_unit="units"
+    ) -> Solution:
+
+        self._validate_cost_matrix(
+            instance,
+            cost_matrix
+        )
+
+        return self._solve_with_cost_matrix(
+            instance=instance,
+            cost_matrix=cost_matrix,
+            objective_name=objective_name,
+            objective_unit=objective_unit
+        )
+
+    # ==================================================
+    # Generic MILP implementation
+    # ==================================================
+
+    def _solve_with_cost_matrix(
+        self,
+        instance: CVRPInstance,
+        cost_matrix,
+        objective_name,
+        objective_unit
+    ) -> Solution:
+
+        start_time = (
+            time.perf_counter()
+        )
+
+        # ==============================================
         # Applicability check
-        # ==================================================
+        # ==============================================
 
-        if not self.supports(instance):
+        if not self.supports(
+            instance
+        ):
             return Solution(
                 solver_name="Gurobi-MILP",
                 routes=[],
-                total_distance=float("inf"),
+                total_distance=float(
+                    "inf"
+                ),
                 runtime_seconds=(
                     time.perf_counter()
                     - start_time
@@ -63,26 +175,28 @@ class GurobiCVRPSolver:
                 status="UNSUPPORTED_INSTANCE",
                 metadata={
                     "max_customers":
-                        self.max_customers
+                        self.max_customers,
+
+                    "objective_name":
+                        objective_name,
+
+                    "objective_unit":
+                        objective_unit
                 }
             )
 
-        # ==================================================
-        # Problem data
-        # ==================================================
-
-        distance_matrix = (
-            create_distance_matrix(
-                instance.points
-            )
-        )
+        # ==============================================
+        # Problem sets
+        # ==============================================
 
         depot = (
             instance.depot_index
         )
 
         nodes = list(
-            range(instance.num_nodes)
+            range(
+                instance.num_nodes
+            )
         )
 
         customers = [
@@ -92,12 +206,14 @@ class GurobiCVRPSolver:
         ]
 
         vehicles = list(
-            range(instance.num_vehicles)
+            range(
+                instance.num_vehicles
+            )
         )
 
-        # ==================================================
-        # Create Gurobi model
-        # ==================================================
+        # ==============================================
+        # Create optimization model
+        # ==============================================
 
         model = gp.Model(
             "RouteIQ_CVRP"
@@ -111,16 +227,20 @@ class GurobiCVRPSolver:
             self.time_limit_seconds
         )
 
-        # ==================================================
+        # ==============================================
         # Decision variables
-        # ==================================================
+        # ==============================================
 
-        # x[i,j,k] = 1
-        # if vehicle k travels from i to j
+        # x[i,j,k] = 1 if vehicle k
+        # travels directly from node i to node j
 
         x = model.addVars(
             [
-                (i, j, k)
+                (
+                    i,
+                    j,
+                    k
+                )
                 for i in nodes
                 for j in nodes
                 for k in vehicles
@@ -130,12 +250,15 @@ class GurobiCVRPSolver:
             name="x"
         )
 
-        # y[i,k] = 1
-        # if customer i is served by vehicle k
+        # y[i,k] = 1 if customer i
+        # is assigned to vehicle k
 
         y = model.addVars(
             [
-                (i, k)
+                (
+                    i,
+                    k
+                )
                 for i in customers
                 for k in vehicles
             ],
@@ -143,8 +266,8 @@ class GurobiCVRPSolver:
             name="y"
         )
 
-        # vehicle_used[k] = 1
-        # if vehicle k is active
+        # vehicle_used[k] = 1 if vehicle k
+        # is actually used
 
         vehicle_used = model.addVars(
             vehicles,
@@ -152,13 +275,16 @@ class GurobiCVRPSolver:
             name="vehicle_used"
         )
 
-        # load[i,k]
-        # cumulative load after vehicle k
-        # reaches customer i
+        # load[i,k] =
+        # cumulative delivered load when
+        # vehicle k reaches customer i
 
         load = model.addVars(
             [
-                (i, k)
+                (
+                    i,
+                    k
+                )
                 for i in customers
                 for k in vehicles
             ],
@@ -167,136 +293,166 @@ class GurobiCVRPSolver:
             name="load"
         )
 
-        # ==================================================
+        # ==============================================
         # Objective
-        # ==================================================
+        # ==============================================
 
         model.setObjective(
             gp.quicksum(
-                distance_matrix[i][j]
+                cost_matrix[i][j]
                 * x[i, j, k]
+
                 for i in nodes
                 for j in nodes
                 for k in vehicles
+
                 if i != j
             ),
             GRB.MINIMIZE
         )
 
-        # ==================================================
-        # Every customer is assigned exactly once
-        # ==================================================
+        # ==============================================
+        # Every customer is served exactly once
+        # ==============================================
 
         for i in customers:
+
             model.addConstr(
                 gp.quicksum(
                     y[i, k]
                     for k in vehicles
                 )
                 == 1,
+
                 name=f"assignment_{i}"
             )
 
-        # ==================================================
+        # ==============================================
         # Customer flow conservation
-        # ==================================================
+        # ==============================================
 
         for i in customers:
+
             for k in vehicles:
 
-                # One incoming arc if customer
-                # belongs to vehicle k
+                # If customer i belongs to vehicle k,
+                # exactly one arc must enter i.
 
                 model.addConstr(
                     gp.quicksum(
                         x[j, i, k]
+
                         for j in nodes
+
                         if j != i
                     )
                     == y[i, k],
-                    name=f"inflow_{i}_{k}"
+
+                    name=(
+                        f"inflow_{i}_{k}"
+                    )
                 )
 
-                # One outgoing arc if customer
-                # belongs to vehicle k
+                # And exactly one arc must leave i.
 
                 model.addConstr(
                     gp.quicksum(
                         x[i, j, k]
+
                         for j in nodes
+
                         if j != i
                     )
                     == y[i, k],
-                    name=f"outflow_{i}_{k}"
+
+                    name=(
+                        f"outflow_{i}_{k}"
+                    )
                 )
 
-        # ==================================================
-        # Depot constraints
-        # ==================================================
+        # ==============================================
+        # Depot usage
+        # ==============================================
 
         for k in vehicles:
 
-            # Active vehicle leaves depot exactly once
+            # Active vehicle leaves depot once.
 
             model.addConstr(
                 gp.quicksum(
                     x[depot, j, k]
+
                     for j in customers
                 )
                 == vehicle_used[k],
-                name=f"depot_departure_{k}"
+
+                name=(
+                    f"depot_departure_{k}"
+                )
             )
 
-            # Active vehicle returns to depot exactly once
+            # Active vehicle returns once.
 
             model.addConstr(
                 gp.quicksum(
                     x[i, depot, k]
+
                     for i in customers
                 )
                 == vehicle_used[k],
-                name=f"depot_return_{k}"
+
+                name=(
+                    f"depot_return_{k}"
+                )
             )
 
-        # ==================================================
-        # Link assignment with vehicle activation
-        # ==================================================
+        # ==============================================
+        # Customer assignment requires active vehicle
+        # ==============================================
 
         for i in customers:
+
             for k in vehicles:
+
                 model.addConstr(
                     y[i, k]
                     <= vehicle_used[k],
-                    name=f"vehicle_link_{i}_{k}"
+
+                    name=(
+                        f"vehicle_link_{i}_{k}"
+                    )
                 )
 
-        # ==================================================
-        # Vehicle capacity constraints
-        # ==================================================
+        # ==============================================
+        # Vehicle capacity
+        # ==============================================
 
         for k in vehicles:
+
             model.addConstr(
                 gp.quicksum(
                     instance.demands[i]
                     * y[i, k]
+
                     for i in customers
                 )
                 <= (
                     instance.vehicle_capacities[k]
                     * vehicle_used[k]
                 ),
-                name=f"capacity_{k}"
+
+                name=(
+                    f"capacity_{k}"
+                )
             )
 
-        # ==================================================
+        # ==============================================
         # Load bounds
-        # ==================================================
+        # ==============================================
 
         for i in customers:
-            for k in vehicles:
 
-                # If customer i is assigned to k,
-                # load must be at least its demand
+            for k in vehicles:
 
                 model.addConstr(
                     load[i, k]
@@ -304,11 +460,11 @@ class GurobiCVRPSolver:
                         instance.demands[i]
                         * y[i, k]
                     ),
-                    name=f"load_lower_{i}_{k}"
-                )
 
-                # If customer i is not assigned,
-                # load must become zero
+                    name=(
+                        f"load_lower_{i}_{k}"
+                    )
+                )
 
                 model.addConstr(
                     load[i, k]
@@ -316,12 +472,15 @@ class GurobiCVRPSolver:
                         instance.vehicle_capacities[k]
                         * y[i, k]
                     ),
-                    name=f"load_upper_{i}_{k}"
+
+                    name=(
+                        f"load_upper_{i}_{k}"
+                    )
                 )
 
-        # ==================================================
-        # Load propagation / subtour elimination
-        # ==================================================
+        # ==============================================
+        # Load propagation + subtour elimination
+        # ==============================================
 
         max_customer_demand = max(
             instance.demands[i]
@@ -334,12 +493,16 @@ class GurobiCVRPSolver:
                 instance.vehicle_capacities[k]
             )
 
+            # Big-M must fully deactivate the
+            # constraint when arc i -> j is unused.
+
             big_m = (
                 capacity
                 + max_customer_demand
             )
 
             for i in customers:
+
                 for j in customers:
 
                     if i == j:
@@ -350,24 +513,25 @@ class GurobiCVRPSolver:
                         >= (
                             load[i, k]
                             + instance.demands[j]
+
                             - big_m
                             * (
                                 1
                                 - x[i, j, k]
                             )
                         ),
-                        name=f"load_flow_{i}_{j}_{k}"
+
+                        name=(
+                            f"load_flow_"
+                            f"{i}_{j}_{k}"
+                        )
                     )
 
-        # ==================================================
-        # Finalize model BEFORE optimization
-        # ==================================================
+        # ==============================================
+        # Finalize and optimize
+        # ==============================================
 
         model.update()
-
-        # ==================================================
-        # Optimize
-        # ==================================================
 
         model.optimize()
 
@@ -376,46 +540,79 @@ class GurobiCVRPSolver:
             - start_time
         )
 
-        # ==================================================
-        # No solution found
-        # ==================================================
+        # ==============================================
+        # No incumbent solution
+        # ==============================================
 
         if model.SolCount == 0:
 
-            if model.Status == GRB.INFEASIBLE:
-                solution_status = "INFEASIBLE"
+            if (
+                model.Status
+                == GRB.INFEASIBLE
+            ):
+                status = (
+                    "INFEASIBLE"
+                )
+
             else:
-                solution_status = "NO_SOLUTION"
+                status = (
+                    "NO_SOLUTION"
+                )
 
             return Solution(
                 solver_name="Gurobi-MILP",
                 routes=[],
-                total_distance=float("inf"),
-                runtime_seconds=runtime_seconds,
+                total_distance=float(
+                    "inf"
+                ),
+                runtime_seconds=(
+                    runtime_seconds
+                ),
                 feasible=False,
-                status=solution_status,
+                status=status,
                 metadata={
                     "gurobi_status":
                         model.Status,
+
                     "solution_count":
                         model.SolCount,
+
                     "time_limit_seconds":
-                        self.time_limit_seconds
+                        self.time_limit_seconds,
+
+                    "objective_name":
+                        objective_name,
+
+                    "objective_unit":
+                        objective_unit,
+
+                    "custom_cost_matrix":
+                        (
+                            objective_name
+                            != "distance"
+                        )
                 }
             )
 
-        # ==================================================
+        # ==============================================
         # Extract routes
-        # ==================================================
+        # ==============================================
 
         routes = []
 
         for k in vehicles:
 
-            if vehicle_used[k].X < 0.5:
+            if (
+                vehicle_used[k].X
+                < 0.5
+            ):
                 routes.append(
-                    [depot, depot]
+                    [
+                        depot,
+                        depot
+                    ]
                 )
+
                 continue
 
             route = [
@@ -427,18 +624,25 @@ class GurobiCVRPSolver:
             )
 
             max_steps = (
-                instance.num_nodes + 1
+                instance.num_nodes
+                + 1
             )
 
             steps = 0
 
-            while steps < max_steps:
+            while (
+                steps
+                < max_steps
+            ):
 
                 next_node = None
 
                 for j in nodes:
 
-                    if j == current_node:
+                    if (
+                        j
+                        == current_node
+                    ):
                         continue
 
                     key = (
@@ -467,16 +671,19 @@ class GurobiCVRPSolver:
 
                 steps += 1
 
-                if current_node == depot:
+                if (
+                    current_node
+                    == depot
+                ):
                     break
 
             routes.append(
                 route
             )
 
-        # ==================================================
+        # ==============================================
         # Independent RouteIQ validation
-        # ==================================================
+        # ==============================================
 
         is_valid, validation_message = (
             validate_cvrp_routes(
@@ -485,25 +692,44 @@ class GurobiCVRPSolver:
             )
         )
 
-        # ==================================================
-        # Translate Gurobi status
-        # ==================================================
+        # ==============================================
+        # Recalculate objective using original
+        # floating-point matrix
+        # ==============================================
+
+        total_cost = (
+            calculate_routes_cost(
+                routes,
+                cost_matrix
+            )
+        )
+
+        # ==============================================
+        # Translate optimization status
+        # ==============================================
 
         if (
-            model.Status == GRB.OPTIMAL
+            model.Status
+            == GRB.OPTIMAL
             and is_valid
         ):
-            status = "OPTIMAL"
+            status = (
+                "OPTIMAL"
+            )
 
         elif is_valid:
-            status = "FEASIBLE"
+            status = (
+                "FEASIBLE"
+            )
 
         else:
-            status = "INVALID_SOLUTION"
+            status = (
+                "INVALID_SOLUTION"
+            )
 
-        # ==================================================
+        # ==============================================
         # Metadata
-        # ==================================================
+        # ==============================================
 
         metadata = {
             "gurobi_status":
@@ -522,27 +748,41 @@ class GurobiCVRPSolver:
                 self.time_limit_seconds,
 
             "validation_message":
-                validation_message
+                validation_message,
+
+            "objective_name":
+                objective_name,
+
+            "objective_unit":
+                objective_unit,
+
+            "custom_cost_matrix":
+                (
+                    objective_name
+                    != "distance"
+                )
         }
 
         if model.IsMIP:
+
             metadata[
                 "mip_gap"
-            ] = model.MIPGap
+            ] = (
+                model.MIPGap
+            )
 
-        # ==================================================
-        # Standard RouteIQ Solution
-        # ==================================================
+        # ==============================================
+        # Standard RouteIQ solution
+        # ==============================================
 
         return Solution(
             solver_name="Gurobi-MILP",
             routes=routes,
-            total_distance=model.ObjVal,
+            total_distance=total_cost,
             runtime_seconds=runtime_seconds,
             feasible=is_valid,
             status=status,
             metadata=metadata
         )
-
 
     

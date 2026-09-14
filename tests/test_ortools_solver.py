@@ -1,3 +1,6 @@
+import pytest
+
+from src.models import CVRPInstance
 from src.problem_data import create_default_instance
 from src.ortools_solver import ORToolsCVRPSolver
 from src.validation import validate_solution
@@ -119,4 +122,99 @@ def test_solver_wrapper_rejects_invalid_internal_solution(
             "validation_message"
         ].lower()
     )
-           
+
+def test_ortools_solves_with_custom_cost_matrix():
+
+    instance = CVRPInstance(
+        name="custom_cost_test",
+        points=[
+            (0, 0),
+            (1, 0),
+            (2, 0)
+        ],
+        demands=[
+            0,
+            1,
+            1
+        ],
+        num_vehicles=1,
+        vehicle_capacities=[
+            10
+        ]
+    )
+
+    cost_matrix = [
+        [0.0, 2.0, 10.0],
+        [2.0, 0.0, 1.0],
+        [10.0, 1.0, 0.0]
+    ]
+
+    solver = ORToolsCVRPSolver(
+        time_limit_seconds=1
+    )
+
+    solution = (
+        solver.solve_with_cost_matrix(
+            instance=instance,
+            cost_matrix=cost_matrix,
+            objective_name=(
+                "travel_time"
+            ),
+            objective_unit=(
+                "minutes"
+            )
+        )
+    )
+
+    assert solution.feasible is True
+
+    assert solution.metadata[
+        "objective_name"
+    ] == "travel_time"
+
+    assert solution.metadata[
+        "objective_unit"
+    ] == "minutes"
+
+    assert solution.total_distance == pytest.approx(
+        13.0
+    )
+
+def test_ortools_rejects_invalid_cost_matrix():
+
+    instance = CVRPInstance(
+        name="invalid_matrix_test",
+        points=[
+            (0, 0),
+            (1, 0),
+            (2, 0)
+        ],
+        demands=[
+            0,
+            1,
+            1
+        ],
+        num_vehicles=1,
+        vehicle_capacities=[
+            10
+        ]
+    )
+
+    invalid_matrix = [
+        [0.0, 1.0],
+        [1.0, 0.0]
+    ]
+
+    solver = ORToolsCVRPSolver(
+        time_limit_seconds=1
+    )
+
+    with pytest.raises(
+        ValueError
+    ):
+        solver.solve_with_cost_matrix(
+            instance,
+            invalid_matrix
+        )
+
+

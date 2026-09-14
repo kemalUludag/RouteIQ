@@ -147,4 +147,163 @@ def test_gurobi_allows_unused_vehicle():
 
     assert len(unused_routes) == 1
 
-        
+
+def test_gurobi_solves_custom_cost_matrix():
+
+    instance = CVRPInstance(
+        name="gurobi_custom_cost_test",
+
+        points=[
+            (0, 0),
+            (1, 0),
+            (2, 0)
+        ],
+
+        demands=[
+            0,
+            1,
+            1
+        ],
+
+        num_vehicles=1,
+
+        vehicle_capacities=[
+            10
+        ]
+    )
+
+    # Unique best route:
+    #
+    # 0 -> 1 -> 2 -> 0
+    #
+    # 2 + 1 + 4 = 7
+
+    cost_matrix = [
+        [
+            0.0,
+            2.0,
+            10.0
+        ],
+        [
+            2.0,
+            0.0,
+            1.0
+        ],
+        [
+            4.0,
+            8.0,
+            0.0
+        ]
+    ]
+
+    solver = GurobiCVRPSolver(
+        time_limit_seconds=10,
+        output_flag=0
+    )
+
+    solution = (
+        solver.solve_with_cost_matrix(
+            instance=instance,
+
+            cost_matrix=cost_matrix,
+
+            objective_name=(
+                "travel_time"
+            ),
+
+            objective_unit=(
+                "minutes"
+            )
+        )
+    )
+
+    assert solution.feasible is True
+
+    assert solution.status == (
+        "OPTIMAL"
+    )
+
+    assert (
+        solution.total_distance
+        == pytest.approx(
+            7.0
+        )
+    )
+
+    assert (
+        solution.routes[0]
+        ==
+        [
+            0,
+            1,
+            2,
+            0
+        ]
+    )
+
+    assert (
+        solution.metadata[
+            "objective_name"
+        ]
+        ==
+        "travel_time"
+    )
+
+    assert (
+        solution.metadata[
+            "objective_unit"
+        ]
+        ==
+        "minutes"
+    )
+
+
+def test_gurobi_rejects_invalid_cost_matrix():
+
+    instance = CVRPInstance(
+        name="invalid_gurobi_matrix_test",
+
+        points=[
+            (0, 0),
+            (1, 0),
+            (2, 0)
+        ],
+
+        demands=[
+            0,
+            1,
+            1
+        ],
+
+        num_vehicles=1,
+
+        vehicle_capacities=[
+            10
+        ]
+    )
+
+    invalid_matrix = [
+        [
+            0.0,
+            1.0
+        ],
+        [
+            1.0,
+            0.0
+        ]
+    ]
+
+    solver = GurobiCVRPSolver(
+        time_limit_seconds=10,
+        output_flag=0
+    )
+
+    with pytest.raises(
+        ValueError
+    ):
+        solver.solve_with_cost_matrix(
+            instance=instance,
+            cost_matrix=invalid_matrix
+        )
+
+               
