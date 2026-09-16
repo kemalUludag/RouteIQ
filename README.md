@@ -13,7 +13,9 @@
   <img src="https://img.shields.io/badge/scikit--learn-ML-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white" alt="scikit-learn">
   <img src="https://img.shields.io/badge/OR--Tools-Routing-7B61FF?style=for-the-badge" alt="OR-Tools">
   <img src="https://img.shields.io/badge/Gurobi-Optimization-EE3524?style=for-the-badge" alt="Gurobi">
-  <img src="https://img.shields.io/badge/Tests-77%20Passing-2DA44E?style=for-the-badge" alt="Tests">
+  <a href="https://github.com/kemalUludag/RouteIQ/actions/workflows/tests.yml">
+  <img src="https://github.com/kemalUludag/RouteIQ/actions/workflows/tests.yml/badge.svg?branch=main" alt="Tests">
+</a>
 </p>
 
 <br>
