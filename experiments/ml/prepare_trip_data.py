@@ -1,4 +1,10 @@
+from pathlib import Path
+
 from routeiq.trip_data_generator import generate_trip_dataset
+
+
+OUTPUT_PATH = Path("data/trip_data.csv")
+OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 
 trips_df = generate_trip_dataset(
@@ -32,9 +38,9 @@ print(trips_df.describe())
 
 
 trips_df.to_csv(
-    "data/trip_data.csv",
+    OUTPUT_PATH,
     index=False
 )
 
 print()
-print("Dataset saved to data/trip_data.csv")
+print(f"Dataset saved to {OUTPUT_PATH}")
